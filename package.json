@@ -1,7 +1,7 @@
 {
   "name": "cine_flash",
   "version": "0.1.0",
-  "homepage": "https://josealex7.github.io/CineFlash/",
+  "homepage": "https://josealex7.github.io/Git_Flash/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.0",
