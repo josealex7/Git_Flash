@@ -25,13 +25,13 @@ export const ProfilePages = () => {
         Usuarios.forEach(element => {
             if(element.User==user){
                 setUsuario({
-                    ["FullName"]: element.FullName,
-                    ["Birthday"]: element.Birthday,
-                    ["User"]: element.User
+                    FullName: element.FullName,
+                    Birthday: element.Birthday,
+                    User: element.User
                 })
+                
             }
         });
-        
     }
 
     React.useEffect(() => {

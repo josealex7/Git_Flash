@@ -14,6 +14,7 @@ import { Typography,
     IconButton,
     } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import FormDialog from './Peliculas/NewPelicula'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -30,6 +31,17 @@ export const Movies = () => {
         categoria:"",
         descripcion:""
     })
+
+    
+    const {name, valoracion, image, trailer, categoria, descripcion} = detallePelicula
+
+    const newPeli = ({ target }) => {
+        setDetallePelicula({
+            ...detallePelicula,
+            [target.name]: target.value
+        })
+        console.log(detallePelicula);
+    }
 
     const [peliculas, setPeliculas] = React.useState([]);
 
@@ -49,6 +61,17 @@ export const Movies = () => {
             console.log(error);
         })
     }
+
+    const DeleteMovie = () =>{
+
+    }
+
+    const postData = () => {
+        axios.post("https://blockmaster-backend.herokuapp.com/peliculas/", detallePelicula)
+            .then(response => console.log(response.data))
+            .catch(error => console.log(error))
+    }
+
   
     const handleClickOpen = (e,id) => {
       detalleMovie(id)
@@ -115,6 +138,7 @@ export const Movies = () => {
                 <Button variant="contained" sx={{ m:2 }} onClick={getData}>All movies</Button>
                 <Button variant="contained" sx={{ m:2 }} onClick={masPopulares}>More popular</Button>
                 <Button variant="contained" sx={{ m:2 }} onClick={menosPopulares}>less popular</Button>
+                <FormDialog/>
             </div>
             
             <Typography variant="h4" sx={{ mx: 6}} color={'white'}>Todas las peliculas</Typography>
@@ -150,7 +174,7 @@ export const Movies = () => {
                 onClose={handleClose}
                 TransitionComponent={Transition}
             >
-                <AppBar sx={{ position: 'relative' }}>
+                <AppBar sx={{ position: 'relative' }} style={{backgroundColor:'rgb(16, 17, 24)'}}>
                 <Toolbar>
                     <IconButton
                     edge="start"
@@ -166,8 +190,15 @@ export const Movies = () => {
                     <Button autoFocus color="inherit" onClick={handleClose}>
                     save
                     </Button>
+                    <Button autoFocus color="inherit" onClick={handleClose}>
+                    Delete
+                    </Button>
+                    <Button autoFocus color="inherit" onClick={handleClose}>
+                    Update
+                    </Button>
                 </Toolbar>
                 </AppBar>
+                
                 <div class="ContenedorPrincipalDetalle" id="contenedorPrincipal">
                     <div class="div-img">
                             <img src={detallePelicula.image} alt=""></img>
@@ -175,21 +206,19 @@ export const Movies = () => {
                     <div class="contenedor-descripcion">
                         <div>
                             <div class="div-titulo">
-                                <h2>{detallePelicula.name}</h2>
-                                <label for="">{detallePelicula.valoracion}</label>
+                                <h1>{detallePelicula.name}</h1>
+                                <img src="https://img.icons8.com/fluency/35/000000/star.png"/>
+                                <label >
+                                    {detallePelicula.valoracion}
+                                </label>
                             </div>
-                            <div>
+                            <div className="contenedorDescripcionp">
                                 <p>
                                     {detallePelicula.descripcion}
                                 </p>
                             </div>
-                            <div class="contenedor-botones">
-                                <div class="div-boton">
-                                    
-                                </div>       
-                                <div class="div-boton">
-                                    <iframe width="560" height="315" src={detallePelicula.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>    
+                            <div class="contenedor-botones">    
+                                    <iframe width="560" height="315" src={detallePelicula.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
                             </div>
                         </div>
                     </div>

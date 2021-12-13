@@ -20,7 +20,7 @@ export const AppRouter = () => {
     //     Auth=JSON.parse(localStorage.getItem('Auth'));
     //     console.log(Auth.exist)
     // }
-    if(false){
+    if(true){
         return (
             <div>
                 <Router>
