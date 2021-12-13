@@ -1,8 +1,6 @@
 import React from "react"
 import '../styles/profilePage.css'
 
-
-
 export const ProfilePages = () => {
     
     const [user, setUser] = React.useState({})
@@ -13,15 +11,12 @@ export const ProfilePages = () => {
         User:""
     })
 
-    const traerDatos = () =>{
+    React.useEffect(() => {
         let userLog=JSON.parse(localStorage.getItem('Auth'))
         setUser(userLog.User)
-        validarUser()
-    }
-
-    const validarUser = () =>{
         let Usuarios = JSON.parse(localStorage.getItem('Usuario'))
         Usuarios.forEach(element => {
+            console.log(user)
             if(element.User==user){
                 setUsuario({
                     FullName: element.FullName,
@@ -30,11 +25,7 @@ export const ProfilePages = () => {
                 })
             } 
         });
-        console.log(user)
-    }
-
-    React.useEffect(() => {
-        traerDatos()
+        
     }, [])
 
     return (

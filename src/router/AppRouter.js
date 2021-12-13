@@ -28,9 +28,7 @@ export const AppRouter = () => {
                     <Routes>
                         <Route exact path="/" element={<Login/>}/>
                         <Route exact path="/signup" element={<SingUp/>}/>
-                        <Route exact path="/profilepage" element={<Login/>}/>
-                        <Route exact path="/movies" element={<Login/>}/>
-                        <Route exact path="/logout" element={<Login/>}/>
+                        <Route exact path="*" element={<Login/>}/>
                     </Routes>
                 <Footer/>           
                 </Router>
@@ -45,8 +43,7 @@ export const AppRouter = () => {
                             <Route exact path="/profilepage" element={<ProfilePages/>}/>
                             <Route exact path="/movies" element={<Movies/>}/>
                             <Route exact path="/logout" element={<LogOut/>}/>
-                            <Route exact path="/" element={<Movies/>}/>
-                            <Route exact path="/login" element={<Movies/>}/>
+                            <Route exact path="*" element={<Movies/>}/>                            
                         </Routes>
                     <FooterUser/>         
                 </Router>

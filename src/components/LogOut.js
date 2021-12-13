@@ -1,3 +1,4 @@
+import { Refresh } from "@material-ui/icons"
 import React from "react"
 
 export const LogOut = () =>{
@@ -5,4 +6,5 @@ export const LogOut = () =>{
         exist:false
     }
     localStorage.setItem('Auth', JSON.stringify(objectUSer))
+    window.location.replace('/');
 }

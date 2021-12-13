@@ -65,6 +65,7 @@ export const Login = () => {
                     User: element.User
                 }
                 localStorage.setItem('Auth', JSON.stringify(usuarioLogin))
+                window.location.replace('/');
             }
         });
 
