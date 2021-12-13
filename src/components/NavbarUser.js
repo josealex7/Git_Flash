@@ -12,21 +12,17 @@ const NavbarUser = () =>{
                     <Link className='link link1' to="/movies">Movies</Link>
                     {/* <TextField color='info' size='small' sx={{ mx   : 5, width: '30%' }} id="Search" className="Search" label="Seacrh Movies" variant="filled"></TextField> */}
                     <FormControl sx={{ mx:2, width: '40%' }} variant="filled">
-                                            <FilledInput
-                                                id="filled-adornment-weight"
-                                                // value={}
-                                                // onChange={handleChangeWeight('weight')}
-                                                endAdornment={<InputAdornment position="end">
-                                                    </InputAdornment>}
-                                                aria-describedby="filled-weight-helper-text"
-                                                inputProps={{
-                                                'aria-label': 'weight',
-                                                }}
-                                            />
-                                            </FormControl>
+                        <FilledInput
+                            id="filled-adornment-weight"
+                            // value={}
+                            // onChange={handleChangeWeight('weight')}
+                            endAdornment={<InputAdornment position="end"></InputAdornment>}
+                            aria-describedby="filled-weight-helper-text"
+                            inputProps={{'aria-label': 'weight'}}
+                        />
+                    </FormControl>
                     <Link className='link ' to="/logout">Log out</Link>
-                    <Link className='link ' to="/profilepage">profile</Link>
-                    
+                    <Link className='link ' to="/profilepage">Profile</Link>
                 </nav>
             </header>
         </div>

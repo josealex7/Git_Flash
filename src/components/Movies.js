@@ -6,12 +6,16 @@ import SliderPeliculas from './Peliculas/PintarPeliculas'
 import { Typography, 
     Button, 
     Card, 
-    CardMedia, 
     Slide,
     Dialog,
     AppBar,
     Toolbar,
     IconButton,
+    DialogActions,
+    TextField,
+    DialogTitle,
+    DialogContent,
+    DialogContentText
     } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import FormDialog from './Peliculas/NewPelicula'
@@ -32,73 +36,69 @@ export const Movies = () => {
         descripcion:""
     })
 
-    
-    const {name, valoracion, image, trailer, categoria, descripcion} = detallePelicula
-
-    const newPeli = ({ target }) => {
-        setDetallePelicula({
-            ...detallePelicula,
-            [target.name]: target.value
-        })
-        console.log(detallePelicula);
-    }
+    const [idmovie, setIdmovie] = React.useState()
 
     const [peliculas, setPeliculas] = React.useState([]);
 
     const [open, setOpen] = React.useState(false);
 
-    
+    const [openUpdate, setopenUpdate] = React.useState(false);
     
     const getData = () => {
             let url = ("https://blockmaster-backend.herokuapp.com/peliculas/")
             axios.get(url)
-            .then(response => {
-                    
-                    let array = response.data
-                    console.log(array)
-                    setPeliculas(response.data);
+            .then(response => {        
+                setPeliculas(response.data);
         }).catch(error => {
             console.log(error);
         })
     }
 
     const DeleteMovie = () =>{
-
+        axios.delete("https://blockmaster-backend.herokuapp.com/peliculas/" + idmovie)
+            .then(response => {
+            getData()
+        }).catch(error=>{
+            console.log(error)
+        })
+        handleClose()
     }
 
-    const postData = () => {
-        axios.post("https://blockmaster-backend.herokuapp.com/peliculas/", detallePelicula)
-            .then(response => console.log(response.data))
-            .catch(error => console.log(error))
-    }
+    const updateData = () => {
+        axios.put("https://blockmaster-backend.herokuapp.com/peliculas/" + idmovie, detallePelicula)
+        .then(response => {
+            console.log(response)
+        }).catch(error=>{
+            console.log(error)
+        })
+    handleCloseUpdate()
+    getData()
+}
 
+    const updatePeli = (e) => {
+        setDetallePelicula({
+            ...detallePelicula,
+            [e.target.name]: e.target.value
+        })
+    }
   
-    const handleClickOpen = (e,id) => {
-      detalleMovie(id)
-      setOpen(true);
-    };
-      
-    const handleClose = () => {
-        setOpen(false);
-    };
-      
     const detalleMovie = (id) =>{
-       peliculas.forEach(element=>{
-           if(element.id===id){
-               setDetallePelicula({
-                id:element.id,
-                name:element.name,
-                valoracion:element.valoracion,
-                image:element.image,
-                trailer:element.trailer,
-                categoria:element.categoria,
-                descripcion:element.descripcion
-               })
-           }
-       })
-    }
+        peliculas.forEach(element=>{
+            if(element.id===id){
+                setDetallePelicula({
+                 id:element.id,
+                 name:element.name,
+                 valoracion:element.valoracion,
+                 image:element.image,
+                 trailer:element.trailer,
+                 categoria:element.categoria,
+                 descripcion:element.descripcion
+                })
+            }
+        })
+     }
 
-    const masPopulares = () =>{
+     const masPopulares = () =>{
         let masPop = peliculas;
         masPop.sort(function (a, b){
             return (b.valoracion - a.valoracion)
@@ -123,108 +123,186 @@ export const Movies = () => {
         setPeliculas(newArray)
     }
 
+    const handleClickOpen = (e,id) => {
+      setIdmovie(id)
+      detalleMovie(id)
+
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        getData()
+    };
+
+    const handleClickOpenUpdate = () => {
+    setopenUpdate(true);
+    };
+
+    const handleCloseUpdate = () => {
+    setopenUpdate(false);
+    getData()
+    };
+
     React.useEffect(()=>{
         getData()
     }, [])
-
-    console.log(detallePelicula);
 
     return (
         <div>
             <div  className="contenedor-principal">
             
-            <SliderPeliculas/>
-            <div className="contenedorBotones">
-                <Button variant="contained" sx={{ m:2 }} onClick={getData}>All movies</Button>
-                <Button variant="contained" sx={{ m:2 }} onClick={masPopulares}>More popular</Button>
-                <Button variant="contained" sx={{ m:2 }} onClick={menosPopulares}>less popular</Button>
-                <FormDialog/>
-            </div>
+                <SliderPeliculas/>
+
+                <div className="contenedorBotones">
+                    <Button variant="contained" sx={{ m:2 }} onClick={getData}>All movies</Button>
+                    <Button variant="contained" sx={{ m:2 }} onClick={masPopulares}>More popular</Button>
+                    <Button variant="contained" sx={{ m:2 }} onClick={menosPopulares}>less popular</Button>
+                    <FormDialog/>
+                </div>
             
-            <Typography variant="h4" sx={{ mx: 6}} color={'white'}>Todas las peliculas</Typography>
-            <div className="contenedorPeli">
-            <div className="contenedorPeliculas">
-            {
-                peliculas.map(element=>(
-                <div className="contedorCard">
-                <Button size="small" onClick={(e) => handleClickOpen(e,element.id)}>
-                    <Card sx={{m:2,  maxWidth: 280  }} spacing={2}>
-                        <div>
-                            <img className="imgPeli" src={element.image}></img>
-                        </div>
-                        
-                            <div className="favoritos">
-                                <img src="https://img.icons8.com/fluency/25/000000/star.png"/>
-                                <label >
-                                    {element.valoracion}
-                                </label>
-                            </div>
-                        
-                    </Card>
-                </Button>  
-                </div>                 
-                ))
-            }
+                <Typography variant="h4" sx={{ mx: 6}} color={'white'}>Todas las peliculas</Typography>
+                <div className="contenedorPeli">
+                    <div className="contenedorPeliculas">
+                    {
+                        peliculas.map(element=>(
+                            <div className="contedorCard">
+                                <Button size="small" onClick={(e) => handleClickOpen(e,element.id)}>
+                                    <Card sx={{m:2,  maxWidth: 280  }} spacing={2}>
+                                        <div>
+                                            <img className="imgPeli" src={element.image}></img>
+                                        </div>
+                                        <div className="favoritos">
+                                            <img src="https://img.icons8.com/fluency/25/000000/star.png"/>
+                                            <label >{element.valoracion}</label>
+                                        </div>
+                                    </Card>
+                                </Button>  
+                            </div>                 
+                        ))
+                    }
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
-            <Dialog
-                fullScreen
-                open={open}
-                onClose={handleClose}
-                TransitionComponent={Transition}
-            >
+            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar sx={{ position: 'relative' }} style={{backgroundColor:'rgb(16, 17, 24)'}}>
-                <Toolbar>
-                    <IconButton
-                    edge="start"
-                    color="inherit"
-                    onClick={handleClose}
-                    aria-label="close"
-                    >
-                    <CloseIcon />
-                    </IconButton>
-                    <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                    Movie: {detallePelicula.name}
-                    </Typography>
-                    <Button autoFocus color="inherit" onClick={handleClose}>
-                    save
-                    </Button>
-                    <Button autoFocus color="inherit" onClick={handleClose}>
-                    Delete
-                    </Button>
-                    <Button autoFocus color="inherit" onClick={handleClose}>
-                    Update
-                    </Button>
-                </Toolbar>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                            <CloseIcon />
+                        </IconButton>
+                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                            Movie: {detallePelicula.name}
+                        </Typography>
+                        <Button autoFocus variant="contained" color="info" sx={{ m:2 }} onClick={handleClose}>
+                            save
+                        </Button>
+                        <Button color="error" variant="contained" autoFocus onClick={DeleteMovie}>
+                            Delete
+                        </Button>
+                        <Button color="success" variant="contained" sx={{ m:2 }} onClick={handleClickOpenUpdate}>
+                            Update
+                        </Button>
+                        <Dialog open={openUpdate} onClose={handleCloseUpdate}>
+                            <DialogTitle>Add movie</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Add the information of the movie you want to update, in the image it must be 
+                                        a url and in the trailer it must be the url that youtube gives you in the 
+                                        option to incorporate video
+                                    </DialogContentText>
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="name"
+                                        label="Name"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.name}
+                                        onChange={updatePeli}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="valoracion"
+                                        label="Score"
+                                        type="number"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.valoracion}
+                                        onChange={updatePeli}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="trailer"
+                                        label="Url Trailer"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.trailer}
+                                        onChange={updatePeli}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="categoria"
+                                        label="Category"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.categoria}
+                                        onChange={updatePeli}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="descripcion"
+                                        label="Description"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.descripcion}
+                                        onChange={updatePeli}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        name="image"
+                                        label="Url Image"
+                                        fullWidth
+                                        variant="standard"
+                                        value={detallePelicula.image}
+                                        onChange={updatePeli}
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button color="error" variant="contained" sx={{ m:2 }} onClick={handleCloseUpdate}>Cancel</Button>
+                                    <Button color="success" variant="contained" sx={{ m:2 }} onClick={updateData}>Update</Button>
+                                </DialogActions>
+                            </Dialog>
+                    </Toolbar>
                 </AppBar>
-                
-                <div class="ContenedorPrincipalDetalle" id="contenedorPrincipal">
-                    <div class="div-img">
+                    <div class="ContenedorPrincipalDetalle" id="contenedorPrincipal">
+                        <div class="div-img">
                             <img src={detallePelicula.image} alt=""></img>
-                    </div>
-                    <div class="contenedor-descripcion">
-                        <div>
-                            <div class="div-titulo">
-                                <h1>{detallePelicula.name}</h1>
-                                <img src="https://img.icons8.com/fluency/35/000000/star.png"/>
-                                <label >
-                                    {detallePelicula.valoracion}
-                                </label>
-                            </div>
-                            <div className="contenedorDescripcionp">
-                                <p>
-                                    {detallePelicula.descripcion}
-                                </p>
-                            </div>
-                            <div class="contenedor-botones">    
-                                    <iframe width="560" height="315" src={detallePelicula.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                        </div>
+                        <div class="contenedor-descripcion">
+                            <div>
+                                <div class="div-titulo">
+                                    <h1>{detallePelicula.name}</h1>
+                                    <img src="https://img.icons8.com/fluency/35/000000/star.png"/>
+                                    <label>{detallePelicula.valoracion}</label>
+                                    </div>
+                                        <div className="contenedorDescripcionp">
+                                            <p>
+                                                {detallePelicula.descripcion}
+                                            </p>
+                                        </div>
+                                    <div class="contenedor-botones">    
+                                        <iframe width="560" height="315" src={detallePelicula.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                 </div>
-                `;
-            </Dialog>
+                        `;
+                    </Dialog>
         </div>
     )
 }

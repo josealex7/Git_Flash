@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, 
     Routes,
-    Route} 
+    Route,
+    Navigate} 
     from 'react-router-dom';
 import {Login} from '../components/Login'
 import { SingUp } from '../components/SingUp';
@@ -9,18 +10,17 @@ import Navbar from '../components/Navbar';
 import NavbarUser from '../components/NavbarUser';
 import {Footer} from '../components/Footer';
 import {Movies} from '../components/Movies'
-import {MenosPopu}  from '../components/MenosPopulares'
-import Populares from '../components/populares'
 import {LogOut} from '../components/LogOut'
 import {FooterUser} from '../components/FooterUSer'
+import { LibraryAdd } from '@material-ui/icons';
 
 export const AppRouter = () => {
-    // let Auth = {};
-    // if(localStorage.getItem('Auth')){
-    //     Auth=JSON.parse(localStorage.getItem('Auth'));
-    //     console.log(Auth.exist)
-    // }
-    if(true){
+    let Auth = {};
+    if(localStorage.getItem('Auth')){
+        Auth=JSON.parse(localStorage.getItem('Auth'));
+        console.log(Auth.exist)
+    }
+    if(!Auth.exist){
         return (
             <div>
                 <Router>
@@ -28,7 +28,9 @@ export const AppRouter = () => {
                     <Routes>
                         <Route exact path="/" element={<Login/>}/>
                         <Route exact path="/signup" element={<SingUp/>}/>
-                        <Route path="/**" element={<Login/>}/>
+                        <Route exact path="/profilepage" element={<Login/>}/>
+                        <Route exact path="/movies" element={<Login/>}/>
+                        <Route exact path="/logout" element={<Login/>}/>
                     </Routes>
                 <Footer/>           
                 </Router>
@@ -38,18 +40,16 @@ export const AppRouter = () => {
         return (
             <div>
                 <Router>
-                <NavbarUser/>
-                    <Routes>
-                        <Route exact path="/profilepage" element={<ProfilePages/>}/>
-                        <Route exact path="/movies" element={<Movies/>}/>
-                        <Route exact path="/menospopulares" element={<MenosPopu/>}/>
-                        <Route exact path="/populares" element={<Populares/>}/>
-                        <Route exact path="/logout" element={<LogOut/>}/>
-                        <Route path="/**" element={<ProfilePages/>}/>
-                    </Routes>
-                <FooterUser/>         
+                    <NavbarUser/>
+                        <Routes>
+                            <Route exact path="/profilepage" element={<ProfilePages/>}/>
+                            <Route exact path="/movies" element={<Movies/>}/>
+                            <Route exact path="/logout" element={<LogOut/>}/>
+                            <Route exact path="/" element={<Movies/>}/>
+                            <Route exact path="/login" element={<Movies/>}/>
+                        </Routes>
+                    <FooterUser/>         
                 </Router>
-                {/* <button>Hola</button> */}
             </div>
         )
     }

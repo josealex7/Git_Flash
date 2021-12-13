@@ -14,7 +14,6 @@ export const ProfilePages = () => {
     })
 
     const traerDatos = () =>{
-        
         let userLog=JSON.parse(localStorage.getItem('Auth'))
         setUser(userLog.User)
         validarUser()
@@ -29,9 +28,9 @@ export const ProfilePages = () => {
                     Birthday: element.Birthday,
                     User: element.User
                 })
-                
-            }
+            } 
         });
+        console.log(user)
     }
 
     React.useEffect(() => {
@@ -41,21 +40,19 @@ export const ProfilePages = () => {
     return (
         <div className="contenedorprincipal">
             <div className="ContenedorProfile">
-            <div className="contenedorImg">
-                <img src="https://img.icons8.com/ios/100/FFFFFF/gender-neutral-user.png"/>
-            </div>
-            <div>
-                <h1>User: {usuario.User}</h1>
-            </div>
-            <div>
-                <h1>Name: {usuario.FullName}</h1>
-            </div>
-            <div>
-                <h1>Birthday: {usuario.Birthday}</h1>
-            </div>
+                <div className="contenedorImg">
+                    <img src="https://img.icons8.com/ios/100/FFFFFF/gender-neutral-user.png"/>
+                </div>
+                <div>
+                    <h1>User: {usuario.User}</h1>
+                </div>
+                <div>
+                    <h1>Name: {usuario.FullName}</h1>
+                </div>
+                <div>
+                    <h1>Birthday: {usuario.Birthday}</h1>
+                </div>
             </div>
         </div>
     )
 }
-
-

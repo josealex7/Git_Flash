@@ -11,7 +11,6 @@ import {TextField,
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/Login.css'
-import {Auth} from '../container/Auth'
 
 export const Login = () => {
 
