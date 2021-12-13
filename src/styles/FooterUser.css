@@ -1,0 +1,61 @@
+.FooterUser{
+    background-color: rgb(16, 17, 24);
+    padding: 20px 0px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    border-top: 2px solid yellow;
+}
+
+.FooterUser li{
+    display: inline-block;
+    padding: 0px 30px;
+}
+
+.FooterUser a{
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    padding: 0px 10px;
+}
+
+.redSocial{
+    float: right;
+}
+
+@media only screen and (max-width: 900px){
+    .FooterUser{
+        padding: 20px 0px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .FooterUser li{
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .redSocial{
+        float: none;
+    }
+
+}
+
+@media only screen and (max-width: 500px){
+    
+    .FooterUser ul{
+        margin-left: -30px;
+    }
+
+    .FooterUser li{
+        display: inline-block;
+        padding: 10px 10px;
+    }
+
+    .FooterUser a{
+        padding: 0px 2px;
+    }
+}
+
+
+

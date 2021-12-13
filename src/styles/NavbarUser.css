@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.headerNav{
+    background-color: rgb(16, 17, 24);
+    font-size: 18px;
+    padding: 10px 3% 20px;
+    font-weight: 600;
+    height: 80px;
+    border-bottom: 2px solid yellow;
+
+}
+
+.NavHeader{
+    width: 100%;
+    color: white;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    float: right;
+}
+
+.link1{
+    float: none;
+    position: relative;
+    bottom: 30px;
+}
+
+.link:hover{
+    color: rgb(218, 144, 49);
+}
+
+.Search{
+    color: white;
+}

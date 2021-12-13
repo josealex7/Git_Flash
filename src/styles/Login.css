@@ -1,0 +1,35 @@
+.contenedorprincipal{
+    padding: 10px;
+    background-color: white;
+    width: 100%;
+}
+
+.contenedor{
+    max-width: 500px;
+    background-color: rgba(238, 238, 238, 0.856);
+    margin: 3% auto;
+    padding: 20px;
+    border: 1px solid rgb(3,37,65);
+    box-shadow: 3px 3px 12px 1px rgb(3,37,65);
+    text-align: center;
+}
+
+.contenedor-img{
+    background-color: rgb(3,37,65);
+    margin: 20px auto;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.contenedor-img img{
+    position: relative;
+    top: 15px;
+}
+
+.contenedor p{
+    font-size: 18px;
+    color: rgb(3,37,65);
+    padding: 20px 0px 30px;
+    text-align: justify;   
+}

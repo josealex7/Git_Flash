@@ -1,0 +1,125 @@
+.ContenedorPrincipalDetalle {
+    justify-content: center;
+    background-color: lightslategrey;
+    margin: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.ContenedorPrincipalDetalle div {
+    display: inline-flex;
+}
+
+.div-img {
+    margin: 10px;
+    align-items: center;
+}
+
+.div-img img {
+    height: 400px;
+    border-radius: 10px;
+}
+
+.contenedor-descripcion {
+    margin: 10px;
+    padding: 10px 20px;
+    max-width: 850px;
+}
+
+.contenedor-descripcion div {
+    display: inline-block;
+}
+
+.contenedor-descripcion div p {
+    margin: 10px;
+    text-align: justify;
+}
+
+.contenedor-descripcion h2 {
+    margin-top: 10px;
+}
+
+.div-boton {
+    width: 100%;
+    text-align: center;
+}
+
+.div-boton label {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 8px 10px;
+    background-color: rgb(113, 235, 129);
+    border-radius: 10px;
+    justify-content: start;
+}
+
+.div-boton input {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+}
+
+.div-boton input:placeholder-shown {
+    text-align: center;
+}
+
+.div-boton button {
+    padding: 12px;
+    align-items: initial;
+    margin-bottom: 5px;
+}
+
+.contenedor-botones {
+    margin-top: 30px;
+    display: inline;
+    background-color: rgba(51, 80, 104, 0.719);
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .ContenedorPrincipalDetalle div {
+        display: inline-block;
+    }
+    .ContenedorPrincipalDetalle {
+        text-align: center;
+        justify-content: center;
+        margin: 20px;
+    }
+    .ContenedorPrincipalDetalle {
+        padding: 10px 0px;
+        margin: 10px;
+    }
+    .div-boton label {
+        margin: 10px 0px 10px 0px;
+    }
+    .div-boton input {
+        margin: 10px 0px;
+    }
+    .div-boton button {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .div-img {
+        align-items: center;
+    }
+    .div-img img {
+        height: 320px;
+    }
+    .ContenedorPrincipalDetalle {
+        padding: 10px 0px;
+        margin: 10px;
+    }
+    .div-boton label {
+        margin: 10px 0px 10px 0px;
+    }
+    .div-boton input {
+        margin: 10px 0px;
+    }
+    .div-boton button {
+        margin-left: 0px;
+    }
+}

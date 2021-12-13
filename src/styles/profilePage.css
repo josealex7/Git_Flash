@@ -1,0 +1,32 @@
+.contenedorprincipal{
+    text-align: center;
+    min-height: 77.1vh;
+}
+
+.ContenedorProfile
+{
+    display: inline-block;
+    flex-wrap: wrap;
+    margin: auto;
+    background-color: rgba(238, 238, 238, 0.856);
+    border: 1px solid rgb(3,37,65);
+    box-shadow: 3px 3px 12px 1px rgb(3,37,65);
+    padding: 30px;
+    justify-content: center;
+}
+
+
+.ContenedorProfile div{
+    margin: 30px auto;
+}
+
+
+.contenedorImg{
+    background-color: rgb(16, 17, 24);
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    padding-top: 10px;
+    border: 2px solid black;
+    margin:auto;
+}

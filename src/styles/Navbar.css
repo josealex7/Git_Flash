@@ -1,0 +1,38 @@
+*{
+    margin: 0px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.headerNavPrincipal{
+    background-color: rgb(3,37,65);
+    font-size: 18px;
+    padding: 10px 3%;
+    font-weight: 600;
+    height: 60px;
+}
+
+.NavHeader{
+    width: 100%;
+    color: white;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    float: right;
+}
+
+.link1{
+    float: none;
+    position: relative;
+    bottom: 15px;
+}
+
+.link:hover{
+    color: rgb(160, 160, 160);
+}
+
+.Search{
+    color: white;
+}
