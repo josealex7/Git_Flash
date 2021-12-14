@@ -13,10 +13,13 @@ import {TextField,
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/Login.css'
-import { LocalSee } from "@material-ui/icons";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 
 export const SingUp = () => {
 
+  const MySwal = withReactContent(Swal)
 
     const [Usuario, setUsuario] = useState({
         FullName: "",
@@ -97,6 +100,11 @@ export const SingUp = () => {
                   if(element.User==Usuario.User){
                       existe=false;
                       console.log("El usuario ya existe")
+                      MySwal.fire({
+                        title: 'Error!',
+                        html: 'The user entered already exists!',
+                        icon: 'error'
+                      })
                   }
               })
           }
@@ -112,6 +120,13 @@ export const SingUp = () => {
                 "Password":values.password,
               });
               localStorage.setItem('Usuario', JSON.stringify(DataUsuario));
+              MySwal.fire({
+                title: 'Good job!',
+                html: 'User has been successfully registered!',
+                icon: 'success'
+              }).then(() => {
+                window.location.replace('/');
+              })
           }
           
       }

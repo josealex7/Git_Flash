@@ -19,12 +19,16 @@ import { Typography,
     } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import FormDialog from './Peliculas/NewPelicula'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export const Movies = () => {
+
+    const MySwal = withReactContent(Swal)
 
     const [detallePelicula, setDetallePelicula] = React.useState({
         id:0,
@@ -55,13 +59,32 @@ export const Movies = () => {
     }
 
     const DeleteMovie = () =>{
-        axios.delete("https://blockmaster-backend.herokuapp.com/peliculas/" + idmovie)
-            .then(response => {
-            getData()
-        }).catch(error=>{
-            console.log(error)
-        })
         handleClose()
+        MySwal.fire({
+                    target:('form-modal'),
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      axios.delete("https://blockmaster-backend.herokuapp.com/peliculas/" + idmovie)
+                    .then(response => {
+                        getData()
+                    }).catch(error=>{
+                        console.log(error)
+                    })
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
     }
 
     const updateData = () => {
@@ -184,7 +207,7 @@ export const Movies = () => {
                     </div>
                 </div>
             </div>
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+            <Dialog id='form-modal' fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar sx={{ position: 'relative' }} style={{backgroundColor:'rgb(16, 17, 24)'}}>
                     <Toolbar>
                         <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">

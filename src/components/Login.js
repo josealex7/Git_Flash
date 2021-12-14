@@ -11,8 +11,12 @@ import {TextField,
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/Login.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export const Login = () => {
+
+    const MySwal = withReactContent(Swal)
 
     const [values, setValues] = React.useState({
         amount: '',
@@ -72,6 +76,11 @@ export const Login = () => {
         if(!existe){
             localStorage.setItem('Auth', JSON.stringify(existe))
             console.log('Usuario no encontrado')
+            MySwal.fire({
+                title: 'User not found!',
+                html: 'The username or password is not correct!',
+                icon: 'error'
+              })
         }
 
       }

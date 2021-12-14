@@ -8,8 +8,13 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import '../../styles/NewPeli.css'
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export default function FormDialog() {
+
+  const MySwal = withReactContent(Swal)
+
   const [openNew, setOpenNew] = React.useState(false);
 
   const [detallePelicula, setDetallePelicula] = React.useState({
@@ -45,8 +50,13 @@ const {name, valoracion, image, trailer, categoria, descripcion} = detallePelicu
     axios.post(url, detallePelicula)
         .then(response => console.log(response.data))
         .catch(error => console.log(error))
-
     handleClose()
+    MySwal.fire({
+      title: 'Good Job!',
+      html: 'the movie has been added successfully!',
+      icon: 'success'
+    });
+    window.location.href=window.location.href;
 }
 
   return (

@@ -16,19 +16,22 @@
 .NavHeader{
     width: 100%;
     color: white;
+    text-align: right;
 }
 
 .link{
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
-    float: right;
+    top: 10px;
 }
 
 .link1{
-    float: none;
-    position: relative;
-    bottom: 30px;
+    float: left;
+    top: 10px;
+}
+
+.imgLogo{
+    float: left;
 }
 
 .link:hover{
