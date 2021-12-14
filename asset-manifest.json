@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Git_Flash/static/css/main.cd516a1e.chunk.css",
-    "main.js": "/Git_Flash/static/js/main.09f7be3c.chunk.js",
-    "main.js.map": "/Git_Flash/static/js/main.09f7be3c.chunk.js.map",
+    "main.css": "/Git_Flash/static/css/main.8e06a82a.chunk.css",
+    "main.js": "/Git_Flash/static/js/main.13e3f371.chunk.js",
+    "main.js.map": "/Git_Flash/static/js/main.13e3f371.chunk.js.map",
     "runtime-main.js": "/Git_Flash/static/js/runtime-main.20404a4b.js",
     "runtime-main.js.map": "/Git_Flash/static/js/runtime-main.20404a4b.js.map",
-    "static/js/2.dfb7e634.chunk.js": "/Git_Flash/static/js/2.dfb7e634.chunk.js",
-    "static/js/2.dfb7e634.chunk.js.map": "/Git_Flash/static/js/2.dfb7e634.chunk.js.map",
+    "static/js/2.952dae3f.chunk.js": "/Git_Flash/static/js/2.952dae3f.chunk.js",
+    "static/js/2.952dae3f.chunk.js.map": "/Git_Flash/static/js/2.952dae3f.chunk.js.map",
     "index.html": "/Git_Flash/index.html",
-    "static/css/main.cd516a1e.chunk.css.map": "/Git_Flash/static/css/main.cd516a1e.chunk.css.map",
-    "static/js/2.dfb7e634.chunk.js.LICENSE.txt": "/Git_Flash/static/js/2.dfb7e634.chunk.js.LICENSE.txt"
+    "static/css/main.8e06a82a.chunk.css.map": "/Git_Flash/static/css/main.8e06a82a.chunk.css.map",
+    "static/js/2.952dae3f.chunk.js.LICENSE.txt": "/Git_Flash/static/js/2.952dae3f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.20404a4b.js",
-    "static/js/2.dfb7e634.chunk.js",
-    "static/css/main.cd516a1e.chunk.css",
-    "static/js/main.09f7be3c.chunk.js"
+    "static/js/2.952dae3f.chunk.js",
+    "static/css/main.8e06a82a.chunk.css",
+    "static/js/main.13e3f371.chunk.js"
   ]
 }
