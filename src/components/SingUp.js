@@ -125,7 +125,7 @@ export const SingUp = () => {
                 html: 'User has been successfully registered!',
                 icon: 'success'
               }).then(() => {
-                window.location.href=window.location.href+"/*"
+                window.location.replace('https://josealex7.github.io/Git_Flash/');
               })
           }
           
