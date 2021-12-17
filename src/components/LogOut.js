@@ -7,5 +7,6 @@ export const LogOut = () =>{
         exist:false
     }
     localStorage.setItem('Auth', JSON.stringify(objectUSer))
-    window.location.reload(true);
+    window.location.href="https://josealex7.github.io/Git_Flash/";
+    // window.location.replace('/')
 }

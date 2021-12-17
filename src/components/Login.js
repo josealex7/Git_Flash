@@ -69,7 +69,8 @@ export const Login = () => {
                     User: element.User
                 }
                 localStorage.setItem('Auth', JSON.stringify(usuarioLogin))
-                window.location.replace('/');
+                window.location.href="https://josealex7.github.io/Git_Flash/";
+                // window.location.replace('/')
             }
         });
 
