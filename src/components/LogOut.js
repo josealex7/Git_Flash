@@ -6,5 +6,5 @@ export const LogOut = () =>{
         exist:false
     }
     localStorage.setItem('Auth', JSON.stringify(objectUSer))
-    window.location.replace('/');
+    window.location.href=window.location.href+"/*"
 }
