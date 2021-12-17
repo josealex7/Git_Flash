@@ -36,6 +36,7 @@ const NavbarUser = () =>{
                 element.style.display = "none";
             }
             else {
+                if(window.location.href!=="https://josealex7.github.io/profilepage")
                 validarPalabra()
                 setSearchShow(true);
                 element.style.display = "inline-flex";
