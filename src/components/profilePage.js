@@ -1,36 +1,31 @@
+import { Button } from "@mui/material"
 import React from "react"
 import '../styles/profilePage.css'
 
 export const ProfilePages = () => {
     
-    const [user, setUser] = React.useState({})
+    const [usuario, setUsuario] = React.useState(null)
 
-    const [usuario, setUsuario] = React.useState({
-        FullName:"",
-        Birthday:"",
-        User:""
-    })
+    const compararDatos = (usuarios, user) =>{
+        const loggerUser =  usuarios.find(element => element.User === user);
+        setUsuario(loggerUser)
+    }
+
+    const traerDatosUser = () =>{
+        let userLog = JSON.parse(localStorage.getItem('Auth'))
+        let usuarios = JSON.parse(localStorage.getItem('Usuario'))
+        compararDatos(usuarios, userLog.User)
+    }
 
     React.useEffect(() => {
-        let userLog=JSON.parse(localStorage.getItem('Auth'))
-        setUser(userLog.User)
-        let Usuarios = JSON.parse(localStorage.getItem('Usuario'))
-        Usuarios.forEach(element => {
-            console.log(user)
-            if(element.User==user){
-                setUsuario({
-                    FullName: element.FullName,
-                    Birthday: element.Birthday,
-                    User: element.User
-                })
-            } 
-        });
-        
+        traerDatosUser()
     }, [])
 
     return (
         <div className="contenedorprincipal">
-            <div className="ContenedorProfile">
+            {
+                usuario ?
+                <div className="ContenedorProfile">
                 <div className="contenedorImg">
                     <img src="https://img.icons8.com/ios/100/FFFFFF/gender-neutral-user.png"/>
                 </div>
@@ -43,7 +38,8 @@ export const ProfilePages = () => {
                 <div>
                     <h1>Birthday: {usuario.Birthday}</h1>
                 </div>
-            </div>
+            </div> : <h1>no hay usuario</h1>
+            }
         </div>
     )
 }

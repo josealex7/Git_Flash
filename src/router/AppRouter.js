@@ -12,7 +12,6 @@ import {Footer} from '../components/Footer';
 import {Movies} from '../components/Movies'
 import {LogOut} from '../components/LogOut'
 import {FooterUser} from '../components/FooterUSer'
-import { LibraryAdd } from '@material-ui/icons';
 
 export const AppRouter = () => {
     let Auth = {};

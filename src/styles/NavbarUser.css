@@ -3,6 +3,12 @@
     font-family: "Source Sans Pro", Arial, sans-serif;
 }
 
+.divContenedorNav{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(16, 17, 24);
+}
+
 .headerNav{
     background-color: rgb(16, 17, 24);
     font-size: 18px;

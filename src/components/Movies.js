@@ -22,6 +22,7 @@ import FormDialog from './Peliculas/NewPelicula'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -171,10 +172,10 @@ export const Movies = () => {
         getData()
     }, [])
 
+
     return (
         <div>
             <div  className="contenedor-principal">
-            
                 <SliderPeliculas/>
 
                 <div className="contenedorBotones">
